@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class StreamDemo1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+List<String > names= new ArrayList<>();
+names.add("ayushi");
+names.add("Pragati");
+names.add("akash");
+names.add("bhavna");
+names.add("shreya");
+names.add("sandhya");
+names.add("akku");
+names.add("sam");
+
+//Core Stream operations
+//filter
+  names.stream().filter((s)->s.startsWith("a")).forEach(System.out::println);
+  System.out.println("**************");
+	//map
+  names.stream().filter((s)->s.startsWith("a")).map(String::toUpperCase).forEach(System.out::println);
+  System.out.println("**************");
+	//sorted
+  names.stream().sorted().map(String::toUpperCase).forEach(System.out::println);
+	
+	names.forEach(System.out::println);
+	List<String> namesUpperCase=names.stream().sorted().map(String::toUpperCase).collect(Collectors.toList());
+	 System.out.println(namesUpperCase);
+	 
+	 long tm=names.parallelStream().filter((s)-> s.startsWith("A")).count();
+	 System.out.println("Total names starts with A:"+tm);
+	 
+	 Optional<String> r= names.parallelStream().reduce((s1,s2)-> s1 +"#"+s2);
+	 r.ifPresent( System.out::println);
+	
+	}
+
+}
